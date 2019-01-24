@@ -20,7 +20,8 @@ const colorMap = {
 }
 
 const layoutMap = {
-  'aftermath': 'split'
+  'aftermath': 'split',
+  'transform': 'flip'
 }
 
 const rarityMap = {
