@@ -1,5 +1,5 @@
 import express from 'express'
-import compressiion from 'compression'
+import compression from 'compression'
 import Scryfall from './integrations/Scryfall'
 import MtgJSON from './integrations/MtgJSON'
 
