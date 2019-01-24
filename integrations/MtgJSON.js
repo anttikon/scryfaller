@@ -2,7 +2,6 @@ import fetch from 'node-fetch'
 import fs from 'fs'
 import { promisify } from 'util'
 import { startCase } from 'lodash'
-import unzip from 'unzip'
 import Integration from './Integration'
 import map from './Treasure'
 
@@ -82,19 +81,6 @@ export default class MtgJSON extends Integration {
       return cardsResult
     }, [])
     return flattened.filter(card => card.rarity !== 'Basic Land' && card.multiverseId !== undefined)
-  }
-
-  static downloadJson(url) {
-    return new Promise(async (resolve, reject) => {
-      const response = await fetch(url)
-      response.body.pipe(unzip.Extract({ path }))
-        .on('error', (e) => reject(e))
-        .on('close', () => resolve({ success: true }))
-    })
-  }
-
-  static async readJson() {
-    return JSON.parse(await readFileAsync(`${path}/AllSets.json`))
   }
 
   static getJsonPath() {
