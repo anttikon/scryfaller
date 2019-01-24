@@ -1,4 +1,5 @@
 import express from 'express'
+import compressiion from 'compression'
 import Scryfall from './integrations/Scryfall'
 import MtgJSON from './integrations/MtgJSON'
 
@@ -54,7 +55,8 @@ function findFlipCard(card, cards) {
 }
 
 exports.boot = (port) => {
-  const app = express();
+  const app = express()
+  app.use(compression())
   console.log('Express started')
   app.get('/api/v1/cards/', wrap(async (req, res) => {
     const { blockCode } = req.query
